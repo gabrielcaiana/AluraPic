@@ -14,7 +14,11 @@
 </template>
 
 <script>
+import Painel from "./components/shared/painel/Painel"
 export default {
+  components: {
+    'meu-painel': Painel
+  },
   data() {
     return {
       titulo: "AluraPic",
@@ -40,7 +44,7 @@ export default {
     font-family: Helvetica, sans-serif;
     color: gray;
     background-color: #18171E;
-    box-sizing: border-box;
+    padding: 32px 0 ;
   }
   .grid-images {
     display: grid;
