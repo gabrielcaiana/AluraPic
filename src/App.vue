@@ -5,7 +5,7 @@
       <li v-for="(foto, index) of fotos" :key="index">
 
         <meu-painel :titulo="foto.titulo">
-          <img :src="foto.url" :alt="foto.titulo" />
+          <img slot="img" :src="foto.url" :alt="foto.titulo" />
         </meu-painel>
 
       </li>
