@@ -36,7 +36,7 @@ export default {
 <style scoped>
   .corpo {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,6 +57,16 @@ export default {
   }
   .grid-images li {
     list-style: none;
+  }
+
+  @media (max-width:1200px) {
+    .grid-images {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
 </style>
