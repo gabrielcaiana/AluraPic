@@ -14,18 +14,14 @@ export default {
   data() {
     return {
       titulo: "AluraPic",
-      fotos: [
-        {
-          url: "https://source.unsplash.com/collection/212527/800x500",
-          titulo: "cachorro",
-        },
-        {
-          url: "https://source.unsplash.com/collection/212527/800x500",
-          titulo: "cachorrão",
-        },
-      ],
+      fotos: []
     };
   },
+  created() {
+    this.$http.get("http://localhost:3000/v1/fotos")
+      .then((res) => res.json())
+      .then(fotosDaApi => this.fotos = fotosDaApi, err => console.log(err))
+  }
 };
 </script>
 
