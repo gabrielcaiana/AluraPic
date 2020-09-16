@@ -3,8 +3,11 @@
     <h1>{{ titulo }}</h1>
     <ul class="grid-images">
       <li v-for="(foto, index) of fotos" :key="index">
-        <img :src="foto.url" :alt="foto.titulo" />
-        <h3>{{foto.titulo}}</h3>
+
+        <meu-painel :titulo="foto.titulo">
+          <img :src="foto.url" :alt="foto.titulo" />
+        </meu-painel>
+
       </li>
     </ul>
   </div>
@@ -50,20 +53,7 @@ export default {
   }
   .grid-images li {
     list-style: none;
-    height: 400px;
-    background-color: #39364b;
-    border-radius: 5px;
   }
-  .grid-images li img {
-    width: 300px;
-    height: 80%;
-    object-fit: cover;
-    border-radius: 4px 4px 0 0 ;
-  }
-  .grid-images li h3 {
-    margin-top: 16px;
-    text-align: center;
-    color: #fff;
-  }
+
 </style>
 
