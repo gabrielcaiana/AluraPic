@@ -54,10 +54,10 @@ export default {
 <style scoped>
   .corpo {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-family: Helvetica, sans-serif;
     color: gray;
