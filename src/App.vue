@@ -2,12 +2,12 @@
   <div class="corpo">
     <h1>{{ titulo }}</h1>
 
-    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtro por parte do titulo">
+    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Filtro por parte do titulo">
 
     <ul class="grid-images">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
-          <img slot="img" :src="foto.url" :alt="foto.titulo" />
+          <img class="imagem-responsiva" slot="img" :src="foto.url" :alt="foto.titulo" />
         </meu-painel>
       </li>
     </ul>
@@ -91,6 +91,14 @@ export default {
     outline: none;
     border: 1px solid #fff;
   }
+
+  .imagem-responsiva {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
 
   @media (max-width:1200px) {
     .grid-images {

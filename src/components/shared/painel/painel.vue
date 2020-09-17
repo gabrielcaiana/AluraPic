@@ -1,9 +1,11 @@
 <template>
   <div class="painel" @dblclick="visivel = !visivel">
-    <div v-show="visivel">
-      <slot name="img"></slot>
-    </div>
-      <h3>{{ titulo }}</h3>
+   <transition name="fade">
+     <div class="parentImg" v-show="visivel">
+       <slot class="imagem-responsiva" name="img"></slot>
+     </div>
+    </transition>
+    <h3>{{ titulo }}</h3>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style  scoped>
 .painel{
   width: 300px;
   height: 100%;
@@ -27,17 +29,9 @@ export default {
   box-shadow: 1px 1px 20px #37334d;
 }
 
-.painel div {
+.parentImg {
  width: 100%;
  height: 80%;
-}
-
-.painel img {
-  width: 100%;
-  height: 100%;
-  min-height: 350px;
-  object-fit: cover;
-  border-radius: 4px 4px 0 0;
 }
 
 .painel h3 {
@@ -46,5 +40,19 @@ export default {
  box-sizing: border-box;
   text-align: center;
   color: #fff;
+}
+
+.fade-enter {
+ opacity: 0;
+}
+.fade-enter-active {
+ transition: opacity .5s ease-out; 
+}
+
+.fade-leave-to { /* ending style */
+  opacity: 0;
+}
+.fade-leave-active { /* leaving style */
+  transition: opacity .5s ease-out;
 }
 </style>
