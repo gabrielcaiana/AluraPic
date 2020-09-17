@@ -7,7 +7,7 @@
     <ul class="grid-images">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
-          <img class="imagem-responsiva" slot="img" :src="foto.url" :alt="foto.titulo" />
+          <imagem-responsiva slot="imagem" :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
         </meu-painel>
       </li>
     </ul>
@@ -17,9 +17,11 @@
 
 <script>
 import Painel from "./components/shared/painel/Painel"
+import ImagemResponsiva from "./components/shared/imagem-responsiva/ImagemResponsiva"
 export default {
   components: {
-    'meu-painel': Painel
+    'meu-painel': Painel,
+    'imagem-responsiva': ImagemResponsiva
   },
   data() {
     return {
@@ -91,14 +93,6 @@ export default {
     outline: none;
     border: 1px solid #fff;
   }
-
-  .imagem-responsiva {
-  width: 100%;
-  height: 100%;
-  min-height: 350px;
-  object-fit: cover;
-  border-radius: 4px 4px 0 0;
-}
 
   @media (max-width:1200px) {
     .grid-images {

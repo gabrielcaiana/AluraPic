@@ -2,7 +2,7 @@
   <div class="painel" @dblclick="visivel = !visivel">
    <transition name="fade">
      <div class="parentImg" v-show="visivel">
-       <slot class="imagem-responsiva" name="img"></slot>
+       <slot name="imagem"></slot>
      </div>
     </transition>
     <h3>{{ titulo }}</h3>
@@ -31,7 +31,7 @@ export default {
 
 .parentImg {
  width: 100%;
- height: 80%;
+ height: 350px;
 }
 
 .painel h3 {
