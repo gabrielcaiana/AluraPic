@@ -1,15 +1,17 @@
 <template>
   <div class="corpo">
     <h1>{{ titulo }}</h1>
-    <ul class="grid-images">
-      <li v-for="(foto, index) of fotos" :key="index">
 
+    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtro por parte do titulo">
+    {{filtro}}
+    <ul class="grid-images">
+      <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
           <img slot="img" :src="foto.url" :alt="foto.titulo" />
         </meu-painel>
-
       </li>
     </ul>
+
   </div>
 </template>
 
@@ -22,8 +24,19 @@ export default {
   data() {
     return {
       titulo: "AluraPic",
-      fotos: []
+      fotos: [],
+      filtro: ""
     };
+  },
+  computed: {
+    fotosComFiltro(){
+      if(this.filtro) {
+        let exp = new RegExp(this.filtro.trim(), "i")
+        return this.fotos.filter(foto => exp.test(foto.titulo) )
+      }else {
+        return this.fotos
+      }
+    }
   },
   created() {
   this.$axios.get("http://localhost:3000/v1/fotos")
@@ -62,6 +75,21 @@ export default {
   }
   .grid-images li {
     list-style: none;
+  }
+
+  .filtro {
+    padding: 16px;
+    width: 300px;
+    margin-top: 16px;
+    border: none;
+    background-color: #37334d;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .filtro:focus {
+    outline: none;
+    border: 1px solid #fff;
   }
 
   @media (max-width:1200px) {
