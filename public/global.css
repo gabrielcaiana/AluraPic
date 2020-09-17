@@ -3,5 +3,7 @@
   padding: 0;
 }
 body {
-  height: auto;
+  min-height: 100vh;
+  height: 100%;
+  background-color: #18171E;
 }

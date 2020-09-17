@@ -3,7 +3,7 @@
     <h1>{{ titulo }}</h1>
 
     <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtro por parte do titulo">
-    {{filtro}}
+
     <ul class="grid-images">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
@@ -54,7 +54,7 @@ export default {
 <style scoped>
   .corpo {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
