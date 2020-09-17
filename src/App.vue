@@ -26,10 +26,15 @@ export default {
     };
   },
   created() {
-    this.$http.get("http://localhost:3000/v1/fotos")
-      .then((res) => res.json())
-      .then(fotosDaApi => this.fotos = fotosDaApi, err => console.log(err))
-  }
+  this.$axios.get("http://localhost:3000/v1/fotos")
+  .then((response) => response.data)
+  .catch((error) => console.log(error))
+  .then((fotosDaApi) => this.fotos = fotosDaApi)
+
+    // this.$http.get("http://localhost:3000/v1/fotos")
+    //   .then((res) => res.json())
+    //   .then(fotosDaApi => this.fotos = fotosDaApi, err => console.log(err))
+  },
 };
 </script>
 
