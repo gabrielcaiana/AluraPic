@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <h1>{{ titulo }}</h1>
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Filtro por parte do titulo">
     
@@ -49,6 +49,12 @@ export default {
 </script>
 
 <style scoped>
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .grid-images {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

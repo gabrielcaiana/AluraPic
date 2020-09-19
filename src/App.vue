@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-
+    <router-view></router-view>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {};
 <style scoped>
   .container {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
