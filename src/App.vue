@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <menu-page></menu-page>
+    <menu-page :routes="routes"></menu-page>
     <transition name="page">
       <router-view></router-view>
     </transition>
@@ -9,9 +9,15 @@
 
 <script>
 import Menu from "./components/shared/menu/Menu"
+import { routes } from "./routes"
 export default {
   components: {
     'menu-page': Menu
+  },
+  data() {
+    return {
+      routes
+    }
   }
 };
 </script>
