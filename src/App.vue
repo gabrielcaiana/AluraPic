@@ -1,15 +1,6 @@
 <template>
   <div class="container">
-    <nav>
-      <ul>
-        <li v-for="(route, index) in routes" :key="index">
-          <router-link
-            :to="route.path ? route.path : '/'">{{ route.titulo }}
-           </router-link>
-        </li>
-      </ul>
-    </nav>
-
+    <menu-page></menu-page>
     <transition name="page">
       <router-view></router-view>
     </transition>
@@ -17,13 +8,10 @@
 </template>
 
 <script>
-import {routes} from "./routes"
-
+import Menu from "./components/shared/menu/Menu"
 export default {
-  data() {
-    return {
-      routes
-    }
+  components: {
+    'menu-page': Menu
   }
 };
 </script>
