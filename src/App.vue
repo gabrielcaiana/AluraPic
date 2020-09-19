@@ -1,11 +1,31 @@
 <template>
   <div class="container">
-    <router-view></router-view>
+    <nav>
+      <ul>
+        <li v-for="(route, index) in routes" :key="index">
+          <router-link
+            :to="route.path ? route.path : '/'">{{ route.titulo }}
+           </router-link>
+        </li>
+      </ul>
+    </nav>
+
+    <transition name="page">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-export default {};
+import {routes} from "./routes"
+
+export default {
+  data() {
+    return {
+      routes
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -21,5 +41,19 @@ export default {};
     background-color: #18171E;
     padding: 32px 0 ;
   }
+
+.page-enter {
+ opacity: 0;
+}
+.page-enter-active {
+ transition: opacity .5s ease-out; 
+}
+
+.page-leave-to { /* ending style */
+  opacity: 0;
+}
+.page-leave-active { /* leaving style */
+  transition: opacity .5s ease-out;
+}
 </style>
 
