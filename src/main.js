@@ -4,6 +4,7 @@ import axios from 'axios'
 import vueRouter from 'vue-router'
 import { routes } from "./routes"
 import VueRouter from 'vue-router'
+import "./directives/Transform"
 
 Vue.prototype.$axios = axios
 Vue.use(vueRouter)
