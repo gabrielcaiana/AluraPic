@@ -40,14 +40,14 @@ export default {
  opacity: 0;
 }
 .page-enter-active {
- transition: opacity .5s ease-out; 
+ transition: opacity .3s ease-in-out; 
 }
 
 .page-leave-to { /* ending style */
   opacity: 0;
 }
 .page-leave-active { /* leaving style */
-  transition: opacity .5s ease-out;
+  transition: opacity .3s ease-in-out;
 }
 </style>
 

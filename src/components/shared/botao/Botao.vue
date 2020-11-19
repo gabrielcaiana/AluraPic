@@ -58,7 +58,7 @@ export default {
   font-size: 1.2em;
   border-radius: 5px;
   border: none;
-  margin: 16px 0;
+  margin: 16px 6px;
 }
 
 .botao-perigo {
