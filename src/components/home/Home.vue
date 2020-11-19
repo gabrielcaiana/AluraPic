@@ -6,7 +6,7 @@
     <ul class="grid-images">
       <li v-for="(foto, index) of fotosComFiltro" :key="index">
         <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva v-meu-transform.animate.reverse="25" :url="foto.url" :titulo="foto.titulo"/>
+          <imagem-responsiva v-meu-transform:scale.animate="1.1" :url="foto.url" :titulo="foto.titulo"/>
           <meu-botao 
           @botaoAtivado="remove(foto)" 
           tipo="button" 
