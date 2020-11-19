@@ -4,21 +4,34 @@
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado"></h2>
 
-    <form>
+    <form @submit.prevent="grava()">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off">
+        <input 
+        @input="foto.titulo = $event.target.value" 
+        id="titulo" 
+        autocomplete="off" 
+        :value="foto.titulo">
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off">
+        <input 
+        @input="foto.url = $event.target.value" 
+        id="url" 
+        autocomplete="off" 
+        :value="foto.url">
         <imagem-responsiva/>
       </div>
 
       <div class="controle">
         <label for="descricao">DESCRIÇÃO</label>
-        <textarea id="descricao" autocomplete="off"></textarea>
+        <textarea
+        @input="foto.descricao = $event.target.value" 
+        id="descricao" 
+        autocomplete="off" 
+        :value="foto.descricao">
+        </textarea>
       </div>
 
       <div class="centralizado">
@@ -41,6 +54,24 @@ export default {
 
     'imagem-responsiva': ImagemResponsiva, 
     'meu-botao': Botao
+  },
+  data: () => ({
+    foto: {
+        titulo: '',
+        url: '', 
+        descricao: ''
+      }
+  }),
+  methods: {
+   grava() {
+    console.log("Enviar dados para API")
+
+    this.foto = {
+     titulo: '',
+     url: '',
+     descricao: ''
+    }
+   }
   }
 }
 
