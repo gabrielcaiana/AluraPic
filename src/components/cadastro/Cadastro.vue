@@ -1,7 +1,7 @@
 <template>
   <div class="cadastro">
     <h1 class="centralizado">Cadastro</h1>
-    <h2 class="centralizado">{{foto.titulo}}</h2>
+    <h2 class="centralizado">{{ foto.titulo }}</h2>
 
     <form @submit.prevent="grava()">
       <div class="controle">
@@ -12,7 +12,11 @@
       <div class="controle">
         <label for="url">URL</label>
         <input id="url" autocomplete="off" v-model.lazy="foto.url" />
-        <imagem-responsiva v-show="foto.url" :url="foto.url" :titulo="foto.titulo" />
+        <imagem-responsiva
+          v-show="foto.url"
+          :url="foto.url"
+          :titulo="foto.titulo"
+        />
       </div>
 
       <div class="controle">
@@ -43,13 +47,16 @@ export default {
   },
   data: () => ({
     foto: {
-      foto: new Foto()
+      foto: new Foto(),
     },
   }),
   methods: {
     grava() {
-      this.$axios.post('http://localhost:3000/v1/fotos', this.foto)
-      .then(() => this.foto = new Foto(), err => (console.log(err)))
+      this.$axios.post("http://localhost:3000/v1/fotos", this.foto)
+      .then(
+        () => (this.foto = new Foto()),
+        (err) => console.log(err)
+      );
     },
   },
 };
