@@ -53,8 +53,19 @@ export default {
     };
   },
   created() {
-    let teste = axios.get(`v1/fotos`)
-    .then(() => console.log(teste))
+    if(this.id) { 
+      axios
+       .get(`v1/fotos`)
+       .then((response) => response.data)
+       .catch((error) => console.log(error))
+       .then(fotoAPI => {
+         fotoAPI.map( (foto) => {
+           if(foto._id == this.id) {
+             this.foto = foto
+           }
+         })
+       })
+    }
   },
   methods: {
     grava() {
