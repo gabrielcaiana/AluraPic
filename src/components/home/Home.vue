@@ -87,7 +87,10 @@ export default {
     axios
       .get("v1/fotos")
       .then((response) => response.data)
-      .catch((error) => console.log(error))
+      .catch((err) => {
+         console.log(err)
+         this.mensagem = 'Não foi possivel carregar as fotos'
+         })
       .then((fotosDaApi) => (this.fotos = fotosDaApi));
   },
 };

@@ -62,7 +62,7 @@ export default {
       axios
         .get(`v1/fotos`)
         .then((response) => response.data)
-        .catch((error) => console.log(error))
+        .catch((err) => console.log(err))
         .then((fotoAPI) => {
           fotoAPI.map((foto) => {
             if (foto._id == this.id) {
