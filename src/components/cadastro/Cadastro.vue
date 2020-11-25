@@ -27,7 +27,7 @@
 
       <div class="centralizado">
         <meu-botao rotulo="GRAVAR" tipo="submit" />
-        <router-link to="/"
+        <router-link :to="{name: 'home'}"
           ><meu-botao rotulo="VOLTAR" tipo="button"
         /></router-link>
       </div>
@@ -55,7 +55,7 @@ export default {
       this.$axios.post("v1/fotos", this.foto)
       .then(
         () => (this.foto = new Foto()),
-        (err) => console.log(err)
+        err => console.log(err)
       );
     },
   },

@@ -65,15 +65,12 @@ export default {
   methods: {
     remove(foto) {
       this.$axios.delete(`v1/fotos/${foto._id}`)
-      .then(
-        () => {
-          let indice = this.fotos.indexOf(foto);
-          this.fotos.splice(
-            indice,
-            1
-          )((this.mensagem = "Foto removida com sucesso"));
+      .then(() => {
+        let indice = this.fotos.indexOf(foto);
+        this.fotos.splice(indice,1),
+        this.mensagem = "Foto removida com sucesso"
         },
-        (err) => {
+        err => {
           console.log(err);
           this.mensagem = "Não foi possível excluir a foto";
         }
