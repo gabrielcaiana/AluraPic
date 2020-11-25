@@ -1,6 +1,8 @@
 <template>
   <div class="cadastro">
-    <h1 class="centralizado">Cadastro</h1>
+    <h1 v-if="foto._id" class="centralizado">Editar Foto</h1>
+    <h1 v-else class="centralizado">Cadastrar Foto</h1>
+
     <h2 class="centralizado">{{ foto.titulo }}</h2>
 
     <form @submit.prevent="grava(foto)">
