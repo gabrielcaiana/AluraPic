@@ -27,7 +27,7 @@
 
       <div class="centralizado">
         <meu-botao rotulo="GRAVAR" tipo="submit" />
-        <router-link :to="{name: 'home'}"
+        <router-link :to="{ name: 'home' }"
           ><meu-botao rotulo="VOLTAR" tipo="button"
         /></router-link>
       </div>
@@ -39,23 +39,28 @@
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
 import Botao from "../shared/botao/Botao.vue";
 import Foto from "../../domain/foto/Foto";
+import axios from "@/axios"
 
 export default {
   components: {
     "imagem-responsiva": ImagemResponsiva,
     "meu-botao": Botao,
   },
-  data: () => ({
-    foto: {
+  data: function() {
+    return {
       foto: new Foto(),
-    },
-  }),
+      id: this.$route.params.id,
+    };
+  },
+  created() {
+    let teste = axios.get(`v1/fotos`)
+    .then(() => console.log(teste))
+  },
   methods: {
     grava() {
-      this.$axios.post("v1/fotos", this.foto)
-      .then(
+      axios.post("v1/fotos", this.foto).then(
         () => (this.foto = new Foto()),
-        err => console.log(err)
+        (err) => console.log(err)
       );
     },
   },

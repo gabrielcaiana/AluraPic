@@ -39,6 +39,8 @@ import Painel from "../shared/painel/Painel";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva";
 import Botao from "../shared/botao/Botao";
 import transform from "../../directives/Transform";
+import axios from "@/axios"
+
 export default {
   components: {
     "meu-painel": Painel,
@@ -68,7 +70,7 @@ export default {
   },
   methods: {
     remove(foto) {
-      this.$axios.delete(`v1/fotos/${foto._id}`).then(
+      axios.delete(`v1/fotos/${foto._id}`).then(
         () => {
           let indice = this.fotos.indexOf(foto);
           this.fotos.splice(indice, 1),
@@ -82,7 +84,7 @@ export default {
     },
   },
   created() {
-    this.$axios
+    axios
       .get("v1/fotos")
       .then((response) => response.data)
       .catch((error) => console.log(error))

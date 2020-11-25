@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 import "./directives/Transform"
 
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
 Vue.use(vueRouter)
 
 const router = new VueRouter({
