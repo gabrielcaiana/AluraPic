@@ -17,6 +17,10 @@
             :url="foto.url"
             :titulo="foto.titulo"
           />
+
+          <router-link :to="{name: 'altera', params: {id: foto._id}}">
+            <meu-botao tipo="button" rotulo="Alterar" />
+          </router-link>
           <meu-botao
             @botaoAtivado="remove(foto)"
             tipo="button"
@@ -64,13 +68,13 @@ export default {
   },
   methods: {
     remove(foto) {
-      this.$axios.delete(`v1/fotos/${foto._id}`)
-      .then(() => {
-        let indice = this.fotos.indexOf(foto);
-        this.fotos.splice(indice,1),
-        this.mensagem = "Foto removida com sucesso"
+      this.$axios.delete(`v1/fotos/${foto._id}`).then(
+        () => {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice(indice, 1),
+            (this.mensagem = "Foto removida com sucesso");
         },
-        err => {
+        (err) => {
           console.log(err);
           this.mensagem = "Não foi possível excluir a foto";
         }
