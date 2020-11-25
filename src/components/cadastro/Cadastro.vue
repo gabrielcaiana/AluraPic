@@ -3,7 +3,7 @@
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado">{{ foto.titulo }}</h2>
 
-    <form @submit.prevent="grava()">
+    <form @submit.prevent="grava(foto)">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
         <input id="titulo" autocomplete="off" v-model.lazy="foto.titulo" />
@@ -25,6 +25,8 @@
         </textarea>
       </div>
 
+      <div class="centralizado">{{ mensagem }}</div>
+
       <div class="centralizado">
         <meu-botao rotulo="GRAVAR" tipo="submit" />
         <router-link :to="{ name: 'home' }"
@@ -39,7 +41,7 @@
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
 import Botao from "../shared/botao/Botao.vue";
 import Foto from "../../domain/foto/Foto";
-import axios from "@/axios"
+import axios from "@/axios";
 
 export default {
   components: {
@@ -50,29 +52,39 @@ export default {
     return {
       foto: new Foto(),
       id: this.$route.params.id,
+      mensagem: "",
     };
   },
   created() {
-    if(this.id) { 
+    if (this.id) {
       axios
-       .get(`v1/fotos`)
-       .then((response) => response.data)
-       .catch((error) => console.log(error))
-       .then(fotoAPI => {
-         fotoAPI.map( (foto) => {
-           if(foto._id == this.id) {
-             this.foto = foto
-           }
-         })
-       })
+        .get(`v1/fotos`)
+        .then((response) => response.data)
+        .catch((error) => console.log(error))
+        .then((fotoAPI) => {
+          fotoAPI.map((foto) => {
+            if (foto._id == this.id) {
+              this.foto = foto;
+            }
+          });
+        });
     }
   },
   methods: {
-    grava() {
-      axios.post("v1/fotos", this.foto).then(
-        () => (this.foto = new Foto()),
-        (err) => console.log(err)
-      );
+    grava(foto) {
+      if (this.id) {
+        axios
+          .put(`v1/fotos/${foto._id}`, this.foto)
+          .then(() => {
+            this.$router.push({name: 'home'})
+          })
+          .catch(() => (this.mensagem = "Não foi possível atualizar a foto"));
+      } else {
+        axios.post("v1/fotos", this.foto).then(
+          () => (this.foto = new Foto()),
+          (err) => console.log(err)
+        );
+      }
     },
   },
 };
