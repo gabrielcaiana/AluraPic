@@ -52,7 +52,7 @@ export default {
   }),
   methods: {
     grava() {
-      this.$axios.post("http://localhost:3000/v1/fotos", this.foto)
+      this.$axios.post("v1/fotos", this.foto)
       .then(
         () => (this.foto = new Foto()),
         (err) => console.log(err)

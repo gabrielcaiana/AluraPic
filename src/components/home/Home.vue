@@ -64,9 +64,15 @@ export default {
   },
   methods: {
     remove(foto) {
-      this.$axios.delete(`http://localhost:3000/v1/fotos/${foto._id}`)
+      this.$axios.delete(`v1/fotos/${foto._id}`)
       .then(
-        () => (this.mensagem = "Foto removida com sucesso"),
+        () => {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice(
+            indice,
+            1
+          )((this.mensagem = "Foto removida com sucesso"));
+        },
         (err) => {
           console.log(err);
           this.mensagem = "Não foi possível excluir a foto";
@@ -76,7 +82,7 @@ export default {
   },
   created() {
     this.$axios
-      .get("http://localhost:3000/v1/fotos")
+      .get("v1/fotos")
       .then((response) => response.data)
       .catch((error) => console.log(error))
       .then((fotosDaApi) => (this.fotos = fotosDaApi));
